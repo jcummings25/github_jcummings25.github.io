@@ -3,3 +3,5 @@
 *.code-workspace
 /.quarto/
 *.ipynb_checkpoints
+psam_p06.csv
+psam_p26.csv
