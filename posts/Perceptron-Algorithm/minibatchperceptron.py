@@ -41,7 +41,7 @@ class LinearModel:
         """
         return (self.score(X) > 0)
 
-class Perceptron(LinearModel):
+class MinibatchPerceptron(LinearModel):
 
     def loss(self, X, y):
         """
@@ -63,9 +63,9 @@ class Perceptron(LinearModel):
 
     def grad(self, X, y):
         y_ = 2 * y - 1 # convert labels
-        return (-1* (self.score(X) * y_ < 0).float()* y_ * X).view(-1)
+        return (-1* (self.score(X) * y_ < 0).float().unsqueeze(1)* y_.unsqueeze(1) * X).mean(dim=0) 
 
-class PerceptronOptimizer:
+class MinibatchPerceptronOptimizer:
 
     def __init__(self, model):
         self.model = model 
