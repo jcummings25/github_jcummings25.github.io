@@ -224,10 +224,14 @@ background-size: cover;
   %reload_ext autoreload</code></pre>
 </div>
 </div>
+<section id="logistic-regression-class-source-code" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-class-source-code">Logistic Regression Class Source Code:</h3>
+<p>Use this <a href="https://github.com/jcummings25/github_jcummings25.github.io/blob/main/posts/Logistic-Regression/logistic.py">link</a> to access the Logistic Regression source code.</p>
+</section>
 <section id="generate-data" class="level2">
 <h2 class="anchored" data-anchor-id="generate-data">Generate data</h2>
 <p>Let’s generate some data with a minimal amount of noise.</p>
-<div id="cell-4" class="cell" data-execution_count="272">
+<div id="cell-5" class="cell" data-execution_count="272">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classification_data(n_points <span class="op">=</span> <span class="dv">300</span>, noise <span class="op">=</span> <span class="fl">0.2</span>, p_dims <span class="op">=</span> <span class="dv">2</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> torch.arange(n_points) <span class="op">&gt;=</span> <span class="bu">int</span>(n_points<span class="op">/</span><span class="dv">2</span>)</span>
@@ -245,7 +249,7 @@ background-size: cover;
 <section id="gradient-descent-without-momentum" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-descent-without-momentum">Gradient Descent without Momentum</h3>
 <p>For our frist itteration, we will train our model with a learning rate (alpha) of .1, and a beta of 0. This means we are performing a logistic regression without momentum.</p>
-<div id="cell-6" class="cell" data-execution_count="273">
+<div id="cell-7" class="cell" data-execution_count="273">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate a model and an optimizer</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression() </span>
@@ -260,7 +264,7 @@ background-size: cover;
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With our training complete, lets plot the loss over time</p>
-<div id="cell-8" class="cell" data-execution_count="274">
+<div id="cell-9" class="cell" data-execution_count="274">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(torch.arange(<span class="dv">1</span>, <span class="bu">len</span>(loss_vec)<span class="op">+</span><span class="dv">1</span>), loss_vec, color <span class="op">=</span> <span class="st">"black"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Loss Using Gradient Descent Without Momentum"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>labs <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Number of gradient descent iterations"</span>, ylabel <span class="op">=</span> <span class="st">"Loss (binary cross entropy)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -276,7 +280,7 @@ background-size: cover;
 <section id="gradient-descent-with-momentum" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-descent-with-momentum">Gradient Descent with Momentum</h3>
 <p>Now let’s train our model on the same data, but this time we will use a beta of .9.</p>
-<div id="cell-10" class="cell" data-execution_count="275">
+<div id="cell-11" class="cell" data-execution_count="275">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate a model and an optimizer</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>LR_momentum <span class="op">=</span> LogisticRegression() </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>opt_momentum <span class="op">=</span> GradientDescentOptimizer(LR_momentum)</span>
@@ -289,7 +293,7 @@ background-size: cover;
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    opt_momentum.step(X, y, alpha <span class="op">=</span> <span class="fl">0.1</span>, beta <span class="op">=</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With the model trained, let’s plot the two loss vectors on the same plot to compare.</p>
-<div id="cell-12" class="cell" data-execution_count="276">
+<div id="cell-13" class="cell" data-execution_count="276">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.plot(torch.arange(<span class="dv">1</span>, <span class="bu">len</span>(loss_vec)<span class="op">+</span><span class="dv">1</span>), loss_vec, color <span class="op">=</span> <span class="st">"black"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(torch.arange(<span class="dv">1</span>, <span class="bu">len</span>(loss_vec_momentum)<span class="op">+</span><span class="dv">1</span>), loss_vec_momentum, color <span class="op">=</span> <span class="st">"blue"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -311,7 +315,7 @@ background-size: cover;
 <section id="overfitting" class="level2">
 <h2 class="anchored" data-anchor-id="overfitting">Overfitting</h2>
 <p>Now we are going to generate a new set of data that. Let’s generate 2 sets of data with 2 times as many <code>p_dims</code> as <code>n_points</code></p>
-<div id="cell-15" class="cell" data-execution_count="277">
+<div id="cell-16" class="cell" data-execution_count="277">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> classification_data(noise <span class="op">=</span> <span class="fl">0.5</span>, n_points<span class="op">=</span><span class="dv">50</span>, p_dims<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -320,11 +324,11 @@ background-size: cover;
 <section id="train-model-on-training-data" class="level4">
 <h4 class="anchored" data-anchor-id="train-model-on-training-data">Train Model on Training Data</h4>
 <p>We will now use our <code>X_train</code> and <code>y_train</code> data to train a model to 100% accuracy in order to demonstrate the concept of overfitting.</p>
-<div id="cell-17" class="cell" data-execution_count="278">
+<div id="cell-18" class="cell" data-execution_count="278">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>LR_overfit <span class="op">=</span> LogisticRegression() </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>opt_overfit <span class="op">=</span> GradientDescentOptimizer(LR_overfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="279">
+<div id="cell-19" class="cell" data-execution_count="279">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>loss_vec_train <span class="op">=</span> []</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> LR_overfit.loss(X_train, y_train).item()</span>
@@ -337,7 +341,7 @@ background-size: cover;
 </div>
 </div>
 <p>With our Gradient Descent with Momentum optimization complete, let’s look at how the loss changed over time:</p>
-<div id="cell-20" class="cell">
+<div id="cell-21" class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.plot(torch.arange(<span class="dv">1</span>, <span class="bu">len</span>(loss_vec_train)<span class="op">+</span><span class="dv">1</span>), loss_vec_train, color <span class="op">=</span> <span class="st">"blue"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Loss overfitting on training data"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>labs <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Number of gradient descent iterations"</span>, ylabel <span class="op">=</span> <span class="st">"Loss (binary cross entropy)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -350,7 +354,7 @@ background-size: cover;
 </div>
 </div>
 <p>As we can see, our loss approached 0 within a very few number of gradient descent iterations. Now let’s test our accuracy:</p>
-<div id="cell-22" class="cell" data-execution_count="281">
+<div id="cell-23" class="cell" data-execution_count="281">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>train_acc <span class="op">=</span> ((LR_overfit.predict(X_train) <span class="op">==</span> y_train)<span class="op">*</span><span class="fl">1.0</span>).mean().item()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training accuracy: "</span>, train_acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -359,7 +363,7 @@ background-size: cover;
 </div>
 </div>
 <p>Great, our training accuracy is 100% as expected! Let’s test the accuracy on the test data.</p>
-<div id="cell-24" class="cell" data-execution_count="282">
+<div id="cell-25" class="cell" data-execution_count="282">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test_acc <span class="op">=</span> ((LR_overfit.predict(X_test) <span class="op">==</span> y_test)<span class="op">*</span><span class="fl">1.0</span>).mean().item()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test accuracy: "</span>, test_acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -373,7 +377,7 @@ background-size: cover;
 <section id="performance-on-empirical-data-wisconsin-breast-cancer-diagnostic" class="level2">
 <h2 class="anchored" data-anchor-id="performance-on-empirical-data-wisconsin-breast-cancer-diagnostic">Performance on Empirical Data (Wisconsin Breast Cancer Diagnostic):</h2>
 <p>The <a href="https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic">data</a> from <code>load_breast_cancer</code> dataset is from the Wisconsin (diagnostic) breast cancer dataset. The features in this data were calculated from imaging of breast masses, and describe characteristics of the cell in the image.</p>
-<div id="cell-27" class="cell" data-execution_count="283">
+<div id="cell-28" class="cell" data-execution_count="283">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_breast_cancer</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> load_breast_cancer(return_X_y<span class="op">=</span><span class="va">True</span>)</span>
@@ -384,7 +388,7 @@ background-size: cover;
 <section id="train-validation-test-split" class="level4">
 <h4 class="anchored" data-anchor-id="train-validation-test-split">Train, Validation, Test split</h4>
 <p>Now we split our data into Training, Validation, and Testing datasets using <code>train_test_split</code> frm <code>sklearn</code>. Data is split 60%, 20%, 20% respectively:</p>
-<div id="cell-29" class="cell" data-execution_count="284">
+<div id="cell-30" class="cell" data-execution_count="284">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># split train and test .6 and .4</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>X_train, X_temp, y_train, y_temp <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.4</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -395,7 +399,7 @@ background-size: cover;
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In order to use this data on our Logistic Regression model we need to convert it into <code>torch.Tensor</code>’s:</p>
-<div id="cell-31" class="cell" data-execution_count="285">
+<div id="cell-32" class="cell" data-execution_count="285">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> torch.tensor(X_train, dtype<span class="op">=</span>torch.float32)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> torch.tensor(y_train, dtype<span class="op">=</span>torch.<span class="bu">long</span>)  <span class="co"># or float32 for regression</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -406,14 +410,14 @@ background-size: cover;
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> torch.tensor(y_test, dtype<span class="op">=</span>torch.<span class="bu">long</span>)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-32" class="cell" data-execution_count="286">
+<div id="cell-33" class="cell" data-execution_count="286">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>X_train.size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="286">
 <pre><code>torch.Size([341, 30])</code></pre>
 </div>
 </div>
 <p>Now we can train our Logisitc Regression Model on this data:</p>
-<div id="cell-34" class="cell" data-execution_count="287">
+<div id="cell-35" class="cell" data-execution_count="287">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> GradientDescentOptimizer(LR)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>loss_vec_train <span class="op">=</span> []</span>
@@ -437,7 +441,7 @@ background-size: cover;
 </div>
 <p>Great, our loss after 400 iterations with a learning rate of 0.0005 and a beta of 0 levels out around a loss of 2.</p>
 <p>Let’s see how it performs with momentum:</p>
-<div id="cell-36" class="cell" data-execution_count="288">
+<div id="cell-37" class="cell" data-execution_count="288">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>LRm <span class="op">=</span> LogisticRegression()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>opt_m <span class="op">=</span> GradientDescentOptimizer(LRm)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>loss_vec_train_m <span class="op">=</span> []</span>
@@ -463,7 +467,7 @@ background-size: cover;
 </div>
 <p>Our model reaches a lower loss on the training data when using momentum, although it does not make constant progress. It is interesting to not how low the learning rate (alpha) had to be in order for this model to reach a good loss.</p>
 <p>Lets test this model, with momentum on our training data:</p>
-<div id="cell-38" class="cell" data-execution_count="289">
+<div id="cell-39" class="cell" data-execution_count="289">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>train_acc <span class="op">=</span> ((LRm.predict(X_train) <span class="op">==</span> y_train)<span class="op">*</span><span class="fl">1.0</span>).mean().item()</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test accuracy with momentum: "</span>, train_acc)</span>
@@ -480,7 +484,7 @@ Test accuracy without momentum:  0.8680351972579956</code></pre>
 <section id="validation" class="level4">
 <h4 class="anchored" data-anchor-id="validation">Validation</h4>
 <p>If we use a more robust method than above however, we can probably improve our accuracy by finding the best momentum (beta) and learning rate (alpha). We do this below by selecting samples of alphas and betas and finding the best combination.</p>
-<div id="cell-41" class="cell" data-execution_count="290">
+<div id="cell-42" class="cell" data-execution_count="290">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>learning_rates <span class="op">=</span> [</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1e-6</span>, <span class="fl">3e-6</span>,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1e-5</span>, <span class="fl">3e-5</span>,</span>
@@ -523,7 +527,7 @@ Test accuracy without momentum:  0.8680351972579956</code></pre>
 <span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>        best_beta <span class="op">=</span> beta</span>
 <span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-42" class="cell" data-execution_count="291">
+<div id="cell-43" class="cell" data-execution_count="291">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best learning rate: "</span>, best_alpha)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best beta: "</span>, best_beta)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best loss: "</span>, best_loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -534,7 +538,7 @@ Best loss:  0.5750178098678589</code></pre>
 </div>
 </div>
 <p>In validation, we are able to find our best learning rate and best beta to minimize our loss. Let’s now train our model on the training data, and we will track the loss on the validation and training data overtime so we can compare them.</p>
-<div id="cell-44" class="cell" data-execution_count="292">
+<div id="cell-45" class="cell" data-execution_count="292">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> GradientDescentOptimizer(LR)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>loss_vec_train <span class="op">=</span> []</span>
@@ -559,7 +563,7 @@ Best loss:  0.5750178098678589</code></pre>
 </div>
 </div>
 <p>Surprisingly, our model performs better on the validation data than on the training data. Let’s check our accuracy on the validation data with our best alpha and beta values:</p>
-<div id="cell-46" class="cell" data-execution_count="293">
+<div id="cell-47" class="cell" data-execution_count="293">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>train_acc <span class="op">=</span> ((LR.predict(X_train) <span class="op">==</span> y_train)<span class="op">*</span><span class="fl">1.0</span>).mean().item()</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Train accuracy: "</span>, train_acc)</span>
@@ -578,7 +582,7 @@ Validation accuracy:  0.9385964870452881</code></pre>
 <section id="testing" class="level3">
 <h3 class="anchored" data-anchor-id="testing">Testing</h3>
 <p>I think we can see how we have done on the testing data now:</p>
-<div id="cell-48" class="cell" data-execution_count="294">
+<div id="cell-49" class="cell" data-execution_count="294">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>test_acc <span class="op">=</span> ((LR.predict(X_test) <span class="op">==</span> y_test)<span class="op">*</span><span class="fl">1.0</span>).mean().item()</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test accuracy without momentum: "</span>, test_acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
