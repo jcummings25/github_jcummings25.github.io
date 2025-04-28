@@ -257,7 +257,7 @@ window.Quarto = {
 <section id="data-generation" class="level2">
 <h2 class="anchored" data-anchor-id="data-generation">Data Generation</h2>
 <p>Let’s generate some data that is mostly linearly separable:</p>
-<div id="cell-5" class="cell">
+<div id="cell-5" class="cell" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -289,8 +289,8 @@ window.Quarto = {
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> classification_data(n_points <span class="op">=</span> <span class="dv">100</span>, noise <span class="op">=</span> <span class="fl">0.4</span>)</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plot_classification_data(X, y, ax)</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Basic Classification Data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="80">
-<pre><code>Text(0.5, 0.98, 'Basic Classification data')</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>Text(0.5, 0.98, 'Basic Classification Data')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -304,7 +304,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="sparce-kernel-machine-class-source-code">Sparce Kernel Machine Class Source Code:</h3>
 <p>Use this <a href="https://github.com/jcummings25/github_jcummings25.github.io/blob/main/posts/Sparse-Kernel-Machines/sparse_kernel_logistic.py">link</a> to access the code for our Sparse Kernel Machine.</p>
 <p>For this blog post we will be looking at the use of the rbf_kernel defined in the following code block.</p>
-<div id="cell-7" class="cell">
+<div id="cell-7" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rbf_kernel(X_1, X_2, gamma):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> torch.exp(<span class="op">-</span>gamma<span class="op">*</span>torch.cdist(X_1, X_2)<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -319,7 +319,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Let’s define a function to plot decision boundaries as well as highlighting those points with non-zero values for their weights.</p>
-<div id="cell-11" class="cell" data-execution_count="64">
+<div id="cell-11" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_boundary(KR, X, y, ax <span class="op">=</span> <span class="va">None</span>, highlight <span class="op">=</span> <span class="va">True</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -397,15 +397,15 @@ window.Quarto = {
 <section id="experiment-2-changing-gamma" class="level4">
 <h4 class="anchored" data-anchor-id="experiment-2-changing-gamma">Experiment 2: Changing <span class="math inline">\(\gamma\)</span></h4>
 <p>With lambda reset to a normal value, and gamma made to a very high bandwidth/value of 10 we will see more points with non-zero weights, as each point has a very local decision region: each point only looks at the points very close to it for classification.</p>
-<div id="cell-19" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> KernelLogisticRegression(rbf_kernel, lam <span class="op">=</span> <span class="fl">.1</span>, gamma <span class="op">=</span> <span class="dv">10</span>)</span>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>KR1 <span class="op">=</span> KernelLogisticRegression(rbf_kernel, lam <span class="op">=</span> <span class="fl">.1</span>, gamma <span class="op">=</span> <span class="dv">10</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>KR.fit(X, y, m_epochs <span class="op">=</span> <span class="dv">500000</span>, lr <span class="op">=</span> <span class="fl">0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>KR1.fit(X, y, m_epochs <span class="op">=</span> <span class="dv">500000</span>, lr <span class="op">=</span> <span class="fl">0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-20" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary(KR, X, y)</span>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary(KR1, X, y)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Decision boundary with $</span><span class="ch">\\</span><span class="st">lambda = .1$ and $</span><span class="ch">\\</span><span class="st">gamma = 10$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="91">
+<div class="cell-output cell-output-display" data-execution_count="105">
 <pre><code>Text(0.5, 1.0, 'Decision boundary with $\\lambda = .1$ and $\\gamma = 10$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
